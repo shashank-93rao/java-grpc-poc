@@ -27,7 +27,7 @@ public class GRPCClient {
   private static void helloSync() {
     log.info("Sending a hello request");
     ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 8080).usePlaintext().build();
-    HelloServiceBlockingStub helloService = HelloServiceGrpc.newBlockingStub(channel).withde;
+    HelloServiceBlockingStub helloService = HelloServiceGrpc.newBlockingStub(channel);
     HelloResponse response = helloService.hello(
         Hello.newBuilder().setName("shashank").build());
     log.info("got response: "+ response.getGreeting());
