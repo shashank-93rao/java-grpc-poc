@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files=true;
+package io.shashank.grpc.service.hello;
+
+message Hello{
+  string name = 1;
+}
+
+message HelloResponse {
+  string greeting = 1;
+}
+
+service HelloService{
+  rpc hello(Hello) returns (HelloResponse);
+}

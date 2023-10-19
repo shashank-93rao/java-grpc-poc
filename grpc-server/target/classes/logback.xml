@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Disable logging for the root logger -->
+  <root level="OFF" />
+  
+  <!-- Define a logger for io.shashank and its subpackages -->
+  <logger name="io.shashank" level="INFO" additivity="false">
+    <appender-ref ref="STDOUT" />
+  </logger>
+  
+  <!-- Appender for console output -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+</configuration>
