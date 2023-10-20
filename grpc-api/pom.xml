@@ -1,58 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  
-  <parent>
-    <groupId>io.shashank.grpc</groupId>
-    <artifactId>java-grpc-poc</artifactId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
-  
-  <packaging>jar</packaging>
-  
   <artifactId>grpc-api</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  
-  <dependencies>
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-netty-shaded</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-protobuf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.grpc</groupId>
-      <artifactId>grpc-stub</artifactId>
-    </dependency>
-    <dependency> <!-- necessary for Java 9+ -->
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>annotations-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
   
   <build>
     <extensions>
       <extension>
-        <groupId>kr.motd.maven</groupId>
         <artifactId>os-maven-plugin</artifactId>
-        <version>1.7.1</version>
+        <groupId>kr.motd.maven</groupId>
+        <version>${os-maven-plugin.version}</version>
       </extension>
     </extensions>
     <plugins>
       <plugin>
-        <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
-        <version>0.6.1</version>
         <configuration>
-          <protocArtifact>com.google.protobuf:protoc:3.24.0:exe:${os.detected.classifier}</protocArtifact>
+          <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.58.0:exe:${os.detected.classifier}
+          </pluginArtifact>
           <pluginId>grpc-java</pluginId>
-          <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.58.0:exe:${os.detected.classifier}</pluginArtifact>
+          <protocArtifact>com.google.protobuf:protoc:3.24.0:exe:${os.detected.classifier}
+          </protocArtifact>
         </configuration>
         <executions>
           <execution>
@@ -62,8 +30,45 @@
             </goals>
           </execution>
         </executions>
+        <groupId>org.xolstice.maven.plugins</groupId>
+        <version>0.6.1</version>
       </plugin>
     </plugins>
   </build>
+  
+  <dependencies>
+    <dependency>
+      <artifactId>grpc-netty-shaded</artifactId>
+      <groupId>io.grpc</groupId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>grpc-protobuf</artifactId>
+      <groupId>io.grpc</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>grpc-stub</artifactId>
+      <groupId>io.grpc</groupId>
+    </dependency>
+    <dependency> <!-- necessary for Java 9+ -->
+      <artifactId>annotations-api</artifactId>
+      <groupId>org.apache.tomcat</groupId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  
+  <packaging>jar</packaging>
+  <parent>
+    <artifactId>java-grpc-poc</artifactId>
+    <groupId>io.shashank.grpc</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <properties>
+    <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
+  </properties>
+  
+  <version>1.0-SNAPSHOT</version>
 
 </project>
